@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <div>
       <Navbar />
-      <main className="min-h-screen bg-blue-900">
+      <main className="min-h-screen" style={{ backgroundColor: 'rgb(32, 32, 32)' }}>
         <ProjectionDashboard />
       </main>
     </div>

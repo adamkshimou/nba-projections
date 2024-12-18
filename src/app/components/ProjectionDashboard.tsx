@@ -1,156 +1,155 @@
 import React, { useState } from 'react';
-import * as Tabs from '@radix-ui/react-tabs';
-
-interface Game {
-  id: string;
-  homeTeam: string;
-  awayTeam: string;
-  time: string;
-  date: string;
-}
-
-// Placeholder data - this will come from API later
-const SAMPLE_GAMES: Game[] = [
-  { 
-    id: '1', 
-    homeTeam: 'LAL', 
-    awayTeam: 'GSW', 
-    time: '7:30 PM ET',
-    date: 'Today'
-  },
-  { 
-    id: '2', 
-    homeTeam: 'BOS', 
-    awayTeam: 'MIA', 
-    time: '8:00 PM ET',
-    date: 'Today'
-  },
-  { 
-    id: '3', 
-    homeTeam: 'PHX', 
-    awayTeam: 'DEN', 
-    time: '10:30 PM ET',
-    date: 'Today'
-  }
-];
 
 const ProjectionDashboard: React.FC = () => {
   const [selectedGame, setSelectedGame] = useState<string | null>(null);
 
-  const handleGameSelect = (gameId: string) => {
-    setSelectedGame(gameId);
+  const gameButtonStyle = {
+    backgroundColor: 'rgb(52, 52, 52)',
+    borderColor: 'rgb(123, 78, 221)'
+  };
+
+  const cardStyle = {
+    backgroundColor: 'rgb(52, 52, 52)',
+    borderColor: 'rgb(123, 78, 221)'
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen w-full p-4 pt-16">
-      <div className="w-[90%] max-w-7xl bg-blue-100 rounded-lg shadow-xl overflow-hidden">
-        <div className="p-8 border-b border-blue-200">
-          <h2 className="text-3xl font-bold text-gray-900 text-center">NBA Game Projections</h2>
-        </div>
-        
-        <Tabs.Root defaultValue="games" className="w-full">
-          <Tabs.List className="flex border-b border-blue-200 bg-blue-50 justify-center">
-            <Tabs.Trigger 
-              value="games"
-              className="px-8 py-4 border-b-2 border-transparent data-[state=active]:border-blue-500 data-[state=active]:bg-blue-100 hover:bg-blue-50 text-gray-900 text-lg"
-            >
-              Games
-            </Tabs.Trigger>
-            <Tabs.Trigger 
-              value="trends"
-              className="px-8 py-4 border-b-2 border-transparent data-[state=active]:border-blue-500 data-[state=active]:bg-blue-100 hover:bg-blue-50 text-gray-900 text-lg"
-            >
-              Trends
-            </Tabs.Trigger>
-          </Tabs.List>
+    <div className="flex justify-center items-start min-h-screen w-full p-4 pt-16" 
+         style={{ backgroundColor: 'rgb(32, 32, 32)' }}>
+      <div className="w-[95%] max-w-7xl space-y-6">
+        {/* Main Games Card */}
+        <div className="rounded-lg shadow-xl overflow-hidden border-2" 
+             style={cardStyle}>
+          <div className="p-6 border-b-2" 
+               style={{ borderColor: 'rgb(123, 78, 221)' }}>
+            <h2 className="text-2xl font-bold text-white">NBA Game Projections</h2>
+          </div>
 
-          <Tabs.Content value="games" className="p-8">
-            {!selectedGame ? (
-              // Game Selection View
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {SAMPLE_GAMES.map((game) => (
-                  <button
-                    key={game.id}
-                    onClick={() => handleGameSelect(game.id)}
-                    className="bg-blue-50 rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow border border-blue-200 text-left"
-                  >
-                    <div className="text-sm text-gray-600 mb-2">{game.date}</div>
-                    <div className="text-xl font-bold text-gray-900 mb-2">
+          <div className="p-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {[
+                { id: '1', homeTeam: 'LAL', awayTeam: 'GSW', time: '7:30 PM ET', homeScore: 115, awayScore: 108 },
+                { id: '2', homeTeam: 'MIA', awayTeam: 'BOS', time: '8:00 PM ET', homeScore: 112, awayScore: 118 },
+                { id: '3', homeTeam: 'DEN', awayTeam: 'PHX', time: '10:30 PM ET', homeScore: 124, awayScore: 115 }
+              ].map((game) => (
+                <button
+                  key={game.id}
+                  onClick={() => setSelectedGame(game.id)}
+                  className="rounded-lg p-4 text-left border-2 transition-all duration-200 hover:scale-105 flex justify-between"
+                  style={gameButtonStyle}
+                >
+                  <div>
+                    <div className="text-lg font-bold text-white">
                       {game.awayTeam} @ {game.homeTeam}
                     </div>
-                    <div className="text-gray-700">{game.time}</div>
-                  </button>
+                    <div className="text-gray-300 font-bold">{game.time}</div>
+                  </div>
+                  <div className="text-right">
+                    <div className="text-white font-bold">{game.homeScore}</div>
+                    <div className="text-gray-300 font-bold">{game.awayScore}</div>
+                  </div>
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Additional Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {/* Top Picks Card */}
+          <div className="rounded-lg shadow-xl overflow-hidden border-2 h-[600px]" 
+               style={cardStyle}>
+            <div className="p-4 border-b-2" 
+                 style={{ borderColor: 'rgb(123, 78, 221)' }}>
+              <h2 className="text-xl font-bold text-white">Top Picks</h2>
+            </div>
+            <div className="p-4">
+              <div className="space-y-3">
+                {[
+                  { rank: 1, name: 'Giannis Antetokounmpo', team: 'MIL', prediction: 'Over 31.5 PTS' },
+                  { rank: 2, name: 'Nikola Jokic', team: 'DEN', prediction: 'Over 28.5 PTS' },
+                  { rank: 3, name: 'Shai Gilgeous-Alexander', team: 'OKC', prediction: 'Over 30.5 PTS' },
+                  { rank: 4, name: 'Luka Doncic', team: 'DAL', prediction: 'Over 32.5 PTS' },
+                  { rank: 5, name: 'Devin Booker', team: 'PHX', prediction: 'Over 29.5 PTS' },
+                  { rank: 6, name: 'Donovan Mitchell', team: 'CLE', prediction: 'Over 28.5 PTS' }
+                ].map((player, index) => (
+                  <div key={index} 
+                       className="flex items-center p-3 rounded border-2 transition-all duration-200 hover:scale-105"
+                       style={cardStyle}>
+                    <span className="w-8 text-white font-bold">{player.rank}</span>
+                    <div className="flex-1">
+                      <div className="font-bold text-white">{player.name}</div>
+                      <div className="text-sm font-bold text-gray-300">{player.team}</div>
+                    </div>
+                    <span className="font-bold text-white">{player.prediction}</span>
+                  </div>
                 ))}
               </div>
-            ) : (
-              // Game Projection View
-              <div>
-                <button 
-                  onClick={() => setSelectedGame(null)}
-                  className="mb-6 text-blue-600 hover:text-blue-800 flex items-center"
-                >
-                  ← Back to Games
-                </button>
-                
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                  <div className="bg-blue-50 rounded-lg shadow-lg p-8">
-                    <h3 className="text-2xl font-semibold mb-6 text-gray-900">Game Projections</h3>
-                    <div className="space-y-4">
-                      <div className="border border-blue-200 rounded-lg p-6 bg-white">
-                        <div className="grid grid-cols-2 gap-4">
-                          <div>
-                            <h4 className="font-semibold text-gray-600">Projected Score</h4>
-                            <div className="text-2xl font-bold text-gray-900">112-108</div>
-                          </div>
-                          <div>
-                            <h4 className="font-semibold text-gray-600">Win Probability</h4>
-                            <div className="text-2xl font-bold text-gray-900">65%</div>
-                          </div>
-                          <div>
-                            <h4 className="font-semibold text-gray-600">Total Points</h4>
-                            <div className="text-2xl font-bold text-gray-900">220</div>
-                          </div>
-                          <div>
-                            <h4 className="font-semibold text-gray-600">Spread</h4>
-                            <div className="text-2xl font-bold text-gray-900">-4.5</div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+            </div>
+          </div>
 
-                  <div className="bg-blue-50 rounded-lg shadow-lg p-8">
-                    <h3 className="text-2xl font-semibold mb-6 text-gray-900">Key Player Projections</h3>
-                    <div className="space-y-4">
-                      {/* This will be populated with actual player data */}
-                      <div className="border border-blue-200 rounded-lg p-4 bg-white">
-                        <div className="flex justify-between items-center">
-                          <div>
-                            <div className="font-semibold text-gray-900">S. Curry</div>
-                            <div className="text-sm text-gray-600">GSW - PG</div>
-                          </div>
-                          <div className="text-right">
-                            <div className="text-gray-900">28.5 PTS | 6.4 AST</div>
-                            <div className="text-gray-600">4.8 3PM | 5.2 REB</div>
-                          </div>
-                        </div>
-                      </div>
+          {/* Injury Report Card */}
+          <div className="rounded-lg shadow-xl overflow-hidden border-2 h-[600px]" 
+               style={cardStyle}>
+            <div className="p-4 border-b-2" 
+                 style={{ borderColor: 'rgb(123, 78, 221)' }}>
+              <h2 className="text-xl font-bold text-white">Injury Report</h2>
+            </div>
+            <div className="p-4">
+              <div className="space-y-3">
+                {[
+                  { name: 'LaMelo Ball', team: 'CHA', status: 'Out - Ankle' },
+                  { name: 'Luka Doncic', team: 'DAL', status: 'Questionable - Knee' },
+                  { name: 'Joel Embiid', team: 'PHI', status: 'Day-to-Day - Rest' },
+                  { name: 'Ja Morant', team: 'MEM', status: 'Out - Personal' },
+                  { name: 'Brandon Ingram', team: 'NOP', status: 'Questionable - Knee' },
+                  { name: 'Jalen Green', team: 'HOU', status: 'Day-to-Day - Rest' }
+                ].map((player, index) => (
+                  <div key={index} 
+                       className="flex items-center p-3 rounded border-2 transition-all duration-200 hover:scale-105"
+                       style={cardStyle}>
+                    <div className="flex-1">
+                      <div className="font-bold text-white">{player.name}</div>
+                      <div className="text-sm font-bold text-gray-300">{player.team}</div>
                     </div>
+                    <span className="text-sm font-bold text-red-500">{player.status}</span>
                   </div>
-                </div>
-              </div>
-            )}
-          </Tabs.Content>
-
-          <Tabs.Content value="trends" className="p-8">
-            <div className="bg-blue-50 rounded-lg shadow-lg p-8">
-              <h3 className="text-2xl font-semibold mb-6 text-gray-900">Historical Trends</h3>
-              <div className="h-96 bg-white rounded-lg flex items-center justify-center">
-                [Trend visualization placeholder]
+                ))}
               </div>
             </div>
-          </Tabs.Content>
-        </Tabs.Root>
+          </div>
+
+          {/* Unders Card */}
+          <div className="rounded-lg shadow-xl overflow-hidden border-2 h-[600px]" 
+               style={cardStyle}>
+            <div className="p-4 border-b-2" 
+                 style={{ borderColor: 'rgb(123, 78, 221)' }}>
+              <h2 className="text-xl font-bold text-white">Unders</h2>
+            </div>
+            <div className="p-4">
+              <div className="space-y-3">
+                {[
+                  { name: 'Nikola Jokic', team: 'DEN', line: 'Under 29.5 PTS' },
+                  { name: 'Giannis Antetokounmpo', team: 'MIL', line: 'Under 31.5 PTS' },
+                  { name: 'Shai Gilgeous-Alexander', team: 'OKC', line: 'Under 30.5 PTS' },
+                  { name: 'Jayson Tatum', team: 'BOS', line: 'Under 28.5 PTS' },
+                  { name: 'Kevin Durant', team: 'PHX', line: 'Under 27.5 PTS' },
+                  { name: 'Anthony Edwards', team: 'MIN', line: 'Under 26.5 PTS' }
+                ].map((player, index) => (
+                  <div key={index} 
+                       className="flex items-center p-3 rounded border-2 transition-all duration-200 hover:scale-105"
+                       style={cardStyle}>
+                    <div className="flex-1">
+                      <div className="font-bold text-white">{player.name}</div>
+                      <div className="text-sm font-bold text-gray-300">{player.team}</div>
+                    </div>
+                    <span className="font-bold text-white">{player.line}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
