@@ -1,36 +1,114 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# NBA Game Projections Dashboard 🏀
+
+A modern web application built with Next.js and TypeScript that provides NBA game predictions and statistical analysis. The dashboard offers real-time game projections, player statistics, and historical trend analysis to help users make informed decisions about NBA games.
+
+## Features
+
+- **Game Projections:** View detailed predictions for upcoming NBA games
+  - Score predictions
+  - Win probabilities
+  - Over/Under projections
+  - Team performance metrics
+
+- **Player Statistics:** Access comprehensive player performance data
+  - Points, rebounds, and assists projections
+  - Historical performance trends
+  - Matchup-based predictions
+
+- **User Interface:**
+  - Clean, modern design with a responsive layout
+  - Interactive game selection
+  - Easy navigation between different statistical views
+  - Real-time updates
+
+## Tech Stack
+
+- **Frontend:**
+  - Next.js 14
+  - TypeScript
+  - Tailwind CSS
+  - Radix UI Components
+
+- **Data Management:**
+  - NBA API Integration (upcoming)
+  - Real-time statistical processing
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
+- Node.js (v18.17 or higher)
+- npm (Node Package Manager)
+
+### Installation
+
+1. Clone the repository:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/yourusername/nba-projections.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Navigate to the project directory:
+```bash
+cd nba-projections
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Install dependencies:
+```bash
+npm install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. Start the development server:
+```bash
+npm run dev
+```
 
-## Learn More
+5. Open [http://localhost:3000](http://localhost:3000) in your browser to see the application.
 
-To learn more about Next.js, take a look at the following resources:
+## Project Structure
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+nba-projections/
+├── src/
+│   ├── app/
+│   │   ├── page.tsx
+│   │   ├── layout.tsx
+│   │   └── globals.css
+│   ├── components/
+│   │   ├── ProjectionDashboard.tsx
+│   │   └── Navbar.tsx
+│   └── lib/
+└── public/
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Future Enhancements
 
-## Deploy on Vercel
+- [ ] Integration with NBA API for live data
+- [ ] Advanced statistical modeling for predictions
+- [ ] User authentication and personalized dashboards
+- [ ] Mobile application development
+- [ ] Historical data analysis and visualization
+- [ ] Player comparison tools
+- [ ] Team performance analytics
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Contributing
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Contact
+
+Adam Shimou - [adamkshimou@gmail.com]
+Project Link: [https://github.com/yourusername/nba-projections](https://github.com/adamkshimou/nba-projections)
+
+## Acknowledgments
+
+- NBA API Documentation
+- Next.js Documentation
+- Tailwind CSS
+- Radix UI
+
+---
+**Note:** This project is currently in development. Features and documentation will be updated regularly.
