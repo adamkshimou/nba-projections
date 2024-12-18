@@ -47,7 +47,38 @@ export default function PlayerStats() {
       statType: 'BLK',
       confidence: 70,
       prediction: 'Over' as Prediction
-    }
+    },
+    {
+      propValue: 44.5,
+      statType: 'PRA',
+      confidence: 83,
+      prediction: 'Over'
+    },
+    {
+      propValue: 15.5,
+      statType: 'RA',
+      confidence: 82,
+      prediction: 'Under'
+    },
+    {
+      propValue: 2.5,
+      statType: 'STLBLK',
+      confidence: 80,
+      prediction: 'Over'
+    },
+    {
+      propValue: 1.5,
+      statType: 'DD',
+      confidence: 75,
+      prediction: 'Over'
+    },
+    {
+      propValue: 0.5,
+      statType: 'TD',
+      confidence: 70,
+      prediction: 'Under'
+    },
+
   ] as const;
 
   const variables: Variable[] = [
@@ -56,7 +87,7 @@ export default function PlayerStats() {
     { type: 'Matchup', value: '24.8 PPG vs Bridges' },
     { type: 'Last 5', value: '26.4 PPG' },
     { type: 'Back to Back', value: '-2.3 PPG' },
-    { type: 'Rest Days', value: '+1.8 PPG' },
+    { type: 'vs PHX Record', value: '8-2 Last 10' },
     { type: 'Team Pace', value: '99.8' },
     { type: 'Defense Rating', value: '112.4' }
   ];

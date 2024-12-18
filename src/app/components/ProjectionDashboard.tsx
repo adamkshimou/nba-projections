@@ -1,7 +1,17 @@
+'use client';
+
 import React, { useState } from 'react';
+import { useRouter } from 'next/navigation'; // Added this import
+import Navbar from '@/app/components/Navbar';
 
 const ProjectionDashboard: React.FC = () => {
   const [selectedGame, setSelectedGame] = useState<string | null>(null);
+  const router = useRouter(); // Added router initialization
+
+  // Added navigation handler
+  const handleGameClick = (gameId: string) => {
+    router.push(`/game/${gameId}`);
+  };
 
   const gameButtonStyle = {
     backgroundColor: 'rgb(52, 52, 52)',
@@ -28,13 +38,13 @@ const ProjectionDashboard: React.FC = () => {
           <div className="p-6">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {[
-                { id: '1', homeTeam: 'LAL', awayTeam: 'GSW', time: '7:30 PM ET', homeScore: 115, awayScore: 108 },
-                { id: '2', homeTeam: 'MIA', awayTeam: 'BOS', time: '8:00 PM ET', homeScore: 112, awayScore: 118 },
-                { id: '3', homeTeam: 'DEN', awayTeam: 'PHX', time: '10:30 PM ET', homeScore: 124, awayScore: 115 }
+                { id: 'gsw-lal', homeTeam: 'LAL', awayTeam: 'GSW', time: '7:30 PM ET', homeScore: 115, awayScore: 108 },
+                { id: 'bos-mia', homeTeam: 'MIA', awayTeam: 'BOS', time: '8:00 PM ET', homeScore: 112, awayScore: 118 },
+                { id: 'phx-den', homeTeam: 'DEN', awayTeam: 'PHX', time: '10:30 PM ET', homeScore: 124, awayScore: 115 }
               ].map((game) => (
                 <button
                   key={game.id}
-                  onClick={() => setSelectedGame(game.id)}
+                  onClick={() => handleGameClick(game.id)} // Changed to use handleGameClick
                   className="rounded-lg p-4 text-left border-2 transition-all duration-200 hover:scale-105 flex justify-between"
                   style={gameButtonStyle}
                 >
