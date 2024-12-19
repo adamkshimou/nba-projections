@@ -101,7 +101,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## Contact
 
 Adam Shimou - [adamkshimou@gmail.com]
-Project Link: [https://github.com/yourusername/nba-projections](https://github.com/adamkshimou/nba-projections)
+Project Link: [https://github.com/adamkshimou/nba-projections](https://github.com/adamkshimou/nba-projections)
 
 ## Acknowledgments
 
